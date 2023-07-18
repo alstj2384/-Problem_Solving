@@ -1,11 +1,8 @@
-from collections import deque
-import sys
-
 n, m = map(int, input().split())
 
 graph = []
 
-visited = [[False for i in range(m)] for i in range(n)]
+visited = [[False for _ in range(m)] for _ in range(n)]
 count = 0
 
 countIn = 0

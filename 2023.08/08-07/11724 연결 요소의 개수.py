@@ -1,21 +1,29 @@
-M, N, x, y = map(int, input().split())
+n, m = map(int, input().split())
 
+def union_parent(parent, a, b):
+    a = find_parent(parent, a)
+    b = find_parent(parent, b)
+    if a < b:
+        parent[b] = a
+    else:
+        parent[a] = b
 
-i = 1
-nx, ny = 0 , 0
-while nx != x and ny != y:
-    nx = x * i % M
-    ny = x * i % N
+def find_parent(parent, x):
+    if parent[x] != x:
+        parent[x] = find_parent(parent, parent[x])
+    return parent[x]
 
-print(nx, ny)
+parent = [0] * (n + 1)
 
-# 13이 5가 되는 경우? 5, 18, 31, 44 ...
-# 11이 6이 되는 경우? 6, 17, 23, 29 ...
+for i in range(1, n+1):
+    parent[i] = i
 
-# 10이 3이 되는 경우? 3, 13, 23, 33, ..
-# 12이 1이 되는 경우? 1, 13, 24, 35, ..
+for i in range(m):
+    a, b = map(int, input().split())
+    union_parent(parent, a, b)
 
-# 3, 13, 23 x + (M * i)
-# 1, 3, 25 ... = y + (N * i)
-# 1, 13, 25 ...
+result = []
+for i in range(1, n+1):
+    result.append(find_parent(parent, i))
 
+print(len(set(result)))

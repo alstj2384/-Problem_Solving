@@ -2,7 +2,10 @@
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
-problem_solving_java.iml
+.iml
+.gitignore
+.idea/
+!**/src/2023.12
 
 ### Eclipse ###
 .apt_generated
